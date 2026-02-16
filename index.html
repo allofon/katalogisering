@@ -1960,72 +1960,39 @@ document.addEventListener("click", () => {
   if (linksMenu) linksMenu.style.display = "none";
 });
 </script>
-<script>
-	
-// Lista med Libris-ID:n som garanterat innehåller metadata
-const librisIds = [
-  "https://libris.kb.se/resource/bib/8496261", // Tove Jansson: Muminpappan på äventyr
-  "https://libris.kb.se/resource/bib/8266304", // Astrid Lindgren: Pippi Långstrump
-  "https://libris.kb.se/resource/bib/7308715", // Selma Lagerlöf: Nils Holgerssons underbara resa
-  "https://libris.kb.se/resource/bib/10109329", // August Strindberg: Röda rummet
-  "https://libris.kb.se/resource/bib/10806612", // Vilhelm Moberg: Utvandrarna
-  "https://libris.kb.se/resource/bib/8342210", // Pär Lagerkvist: Dvärgen
-  "https://libris.kb.se/resource/bib/8211777", // Hjalmar Söderberg: Doktor Glas
-  "https://libris.kb.se/resource/bib/12000001", // Camilla Läckberg: Isprinsessan
-  "https://libris.kb.se/resource/bib/11223344", // Stieg Larsson: Män som hatar kvinnor
-  "https://libris.kb.se/resource/bib/9955667"   // Katarina von Bredow: Syskonkärlek
-  // Lägg till fler ID:n här...
-];
 
+	<script>
 async function getRandomBook() {
     const container = document.getElementById("book");
     container.style.display = "none";
     container.innerHTML = "Laddar...";
 
-    // Slumpa ett Libris-ID
-    const randomId = librisIds[Math.floor(Math.random() * librisIds.length)];
-
     try {
-        // Hämta full metadata
-        const res = await fetch(randomId + ".jsonld", { headers: { "Accept": "application/ld+json" } });
-        const data = await res.json();
+        // Hämta den statiska JSON-filen
+        const res = await fetch("books.json");
+        const books = await res.json();
 
-        const graph = data["@graph"];
-        // Hitta Instance-objektet
-        const instance = graph.find(obj => obj["@type"] === "Instance") || graph[0];
-
-        // Plocka metadata
-        const title = instance.hasTitle?.[0]?.mainTitle || "Okänd titel";
-        const year = instance.publication?.[0]?.year || "Okänt";
-        const edition = instance.editionStatement || "Okänd";
-        const isbn = instance.identifiedBy?.filter(id => id["@type"] === "ISBN")
-            .map(id => id.value).join(", ") || "Saknas";
-
-        let authors = "Okänd";
-        if (instance.creator) {
-            if (Array.isArray(instance.creator)) {
-                authors = instance.creator.map(c => c.label || c["@id"]).join(", ");
-            } else {
-                authors = instance.creator.label || instance.creator["@id"];
-            }
-        }
+        // Slumpa en bok
+        const book = books[Math.floor(Math.random() * books.length)];
 
         container.innerHTML = `
-            <h2>${title}</h2>
-            <p><strong>Författare / Medförfattare / Illustratörer:</strong> ${authors}</p>
-            <p><strong>Utgivningsår:</strong> ${year}</p>
-            <p><strong>Upplaga:</strong> ${edition}</p>
-            <p><strong>ISBN:</strong> ${isbn}</p>
-            <p><strong>Libris-ID:</strong> ${randomId.split("/").pop()}</p>
+            <h2>${book.title}</h2>
+            <p><strong>Författare:</strong> ${book.authors.join(", ")}</p>
+            <p><strong>Medförfattare / Illustratörer:</strong> ${book.contributors.join(", ") || "Saknas"}</p>
+            <p><strong>Utgivningsår:</strong> ${book.year}</p>
+            <p><strong>Upplaga:</strong> ${book.edition}</p>
+            <p><strong>ISBN:</strong> ${book.isbn}</p>
+            <p><strong>Libris-ID:</strong> ${book.librisId}</p>
         `;
         container.style.display = "block";
 
     } catch (err) {
-        container.innerHTML = "Fel vid hämtning från Libris.";
+        container.innerHTML = "Fel vid laddning av bokdata.";
         console.error(err);
     }
 }
 </script>
+
 
 
 
