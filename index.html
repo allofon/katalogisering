@@ -2465,7 +2465,6 @@ async function getRandomBook() {
       <p><strong>ISSN:</strong> ${randomBook.issn || "Ingen"}</p>
       <p><strong>Serie:</strong> ${randomBook.series || "Ingen"}</p>
       
-    `;publisherLocation: "New York",
   } catch (err) {
     console.error(err);
     container.innerHTML = "Kunde inte visa bok.";
