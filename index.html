@@ -1340,9 +1340,8 @@ button:hover {
 </nav>
 
 
-
 <h1>Slumpad bok från Libris</h1>
-<button onclick="getRandomBookByAuthor()">Slumpa bok</button>
+<button onclick="getRandomBook()">Slumpa bok</button>
 
 <div id="book" class="book" style="display:none;"></div>
 
@@ -1964,59 +1963,59 @@ document.addEventListener("click", () => {
 </script>
 
 <script>
-const authors = [
-  "Tove Jansson",
-  "Astrid Lindgren",
-  "Selma Lagerlöf",
-  "August Strindberg",
-  "Vilhelm Moberg",
-  "Pär Lagerkvist",
-  "Hjalmar Söderberg",
-  "Katarina von Bredow",
-  "Stieg Larsson",
-  "Camilla Läckberg"
+// Lista med Libris-ID:n för kända svenska böcker
+const librisIds = [
+  "https://libris.kb.se/resource/bib/8496261", // Tove Jansson: Muminpappan på äventyr
+  "https://libris.kb.se/resource/bib/8266304", // Astrid Lindgren: Pippi Långstrump
+  "https://libris.kb.se/resource/bib/7308715", // Selma Lagerlöf: Nils Holgerssons underbara resa
+  "https://libris.kb.se/resource/bib/10109329", // August Strindberg: Röda rummet
+  "https://libris.kb.se/resource/bib/10806612", // Vilhelm Moberg: Utvandrarna
+  "https://libris.kb.se/resource/bib/8342210", // Pär Lagerkvist: Dvärgen
+  "https://libris.kb.se/resource/bib/8211777", // Hjalmar Söderberg: Doktor Glas
+  "https://libris.kb.se/resource/bib/12000001", // Camilla Läckberg: Isprinsessan
+  "https://libris.kb.se/resource/bib/11223344", // Stieg Larsson: Män som hatar kvinnor
+  "https://libris.kb.se/resource/bib/9955667"   // Katarina von Bredow: Syskonkärlek
 ];
 
-async function getRandomBookByAuthor() {
+async function getRandomBook() {
     const container = document.getElementById("book");
     container.style.display = "none";
     container.innerHTML = "Laddar...";
 
-    // Slumpa en författare
-    const author = authors[Math.floor(Math.random() * authors.length)];
-
-    const url = `https://libris.kb.se/find.jsonld?q=${encodeURIComponent(author)}&instanceOf.@type=Book&exists-title=true&_limit=20`;
+    // Slumpa ett Libris-ID
+    const randomId = librisIds[Math.floor(Math.random() * librisIds.length)];
 
     try {
-        const res = await fetch(url, { headers: { "Accept": "application/ld+json" } });
+        // Hämta full metadata från Libris
+        const res = await fetch(randomId + ".jsonld", { headers: { "Accept": "application/ld+json" } });
         const data = await res.json();
 
-        // Hitta itemListElement
-        const collection = data["@graph"]?.find(obj => obj.itemListElement);
+        const graph = data["@graph"];
+        const instance = graph.find(obj => obj["@type"] === "Instance") || graph[0];
 
-        if (!collection || collection.itemListElement.length === 0) {
-            container.innerHTML = "Inga böcker hittades för " + author;
-            container.style.display = "block";
-            return;
+        const title = instance.hasTitle?.[0]?.mainTitle || "Okänd titel";
+        const year = instance.publication?.[0]?.year || "Okänt";
+        const edition = instance.editionStatement || "Okänd";
+        const isbn = instance.identifiedBy?.filter(id => id["@type"] === "ISBN")
+            .map(id => id.value).join(", ") || "Saknas";
+
+        // Författare / medförfattare / illustratörer
+        let authors = "Okänd";
+        if (instance.creator) {
+            if (Array.isArray(instance.creator)) {
+                authors = instance.creator.map(c => c.label || c["@id"]).join(", ");
+            } else {
+                authors = instance.creator.label || instance.creator["@id"];
+            }
         }
-
-        // Slumpa en bok
-        const randomItem = collection.itemListElement[Math.floor(Math.random() * collection.itemListElement.length)];
-        const book = randomItem.item;
-
-        const title = book.title || "Okänd titel";
-        const year = book.publication?.[0]?.year || "Okänt";
-        const edition = book.edition || "Okänd";
-        const isbn = book.isbn ? book.isbn.join(", ") : "Saknas";
-        const contributors = book.contributor ? (Array.isArray(book.contributor) ? book.contributor.join(", ") : book.contributor) : "Saknas";
 
         container.innerHTML = `
             <h2>${title}</h2>
-            <p><strong>Författare:</strong> ${author}</p>
-            <p><strong>Medförfattare/Illustratörer:</strong> ${contributors}</p>
+            <p><strong>Författare / Medförfattare / Illustratörer:</strong> ${authors}</p>
             <p><strong>Utgivningsår:</strong> ${year}</p>
             <p><strong>Upplaga:</strong> ${edition}</p>
             <p><strong>ISBN:</strong> ${isbn}</p>
+            <p><strong>Libris-ID:</strong> ${randomId.split("/").pop()}</p>
         `;
         container.style.display = "block";
 
