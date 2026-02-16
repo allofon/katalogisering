@@ -1968,30 +1968,58 @@ document.addEventListener("click", () => {
 		
 
 <script>
+const books = [
+  {
+    "title": "Hungerspelen",
+    "authors": ["Suzanne Collins"],
+    "contributors": ["Översättare: Anna Lindell"],
+    "year": "2012",
+    "edition": "Svensk upplaga",
+    "isbn": "91-0-987654-6",
+    "pages": 380
+  },
+  {
+    "title": "Catching Fire",
+    "authors": ["Suzanne Collins"],
+    "contributors": ["Översättare: Anna Lindell"],
+    "year": "2013",
+    "edition": "Svensk upplaga",
+    "isbn": "91-0-987654-7",
+    "pages": 400
+  },
+  {
+    "title": "Mockingjay",
+    "authors": ["Suzanne Collins"],
+    "contributors": ["Översättare: Anna Lindell"],
+    "year": "2014",
+    "edition": "Svensk upplaga",
+    "isbn": "91-0-987654-8",
+    "pages": 420
+  }
+  // ...lägg till resten av dina böcker här
+];
+
 async function getRandomBook() {
   const container = document.getElementById("book");
   container.style.display = "block";
   container.innerHTML = "Laddar...";
 
   try {
-    // Slumpa ett id mellan 1 och 1000 som exempel
-    const randomId = Math.floor(Math.random() * 1000) + 1;
-    const response = await fetch(`https://libris.kb.se/xsearch?format=json&q=id:${randomId}`);
-    
-    if (!response.ok) throw new Error("Något gick fel med API:et");
-    
-    const data = await response.json();
+    // Slumpa en bok från listan
+    const randomBook = books[Math.floor(Math.random() * books.length)];
 
-    if (data.records && data.records.length > 0) {
-      const title = data.records[0].title || "Ingen titel";
-      container.innerHTML = `<strong>${title}</strong>`;
-    } else {
-      container.innerHTML = "Ingen bok hittades, prova igen!";
-    }
-
+    container.innerHTML = `
+      <h3>${randomBook.title}</h3>
+      <p><strong>Författare:</strong> ${randomBook.authors.join(", ")}</p>
+      <p><strong>Övriga:</strong> ${randomBook.contributors.join(", ")}</p>
+      <p><strong>År:</strong> ${randomBook.year}</p>
+      <p><strong>Upplaga:</strong> ${randomBook.edition}</p>
+      <p><strong>Sidor:</strong> ${randomBook.pages}</p>
+      <p><strong>ISBN:</strong> ${randomBook.isbn}</p>
+    `;
   } catch (err) {
     console.error(err);
-    container.innerHTML = "Kunde inte hämta bok.";
+    container.innerHTML = "Kunde inte visa bok.";
   }
 }
 </script>
