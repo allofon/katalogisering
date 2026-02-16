@@ -2491,7 +2491,7 @@ async function getRandomBook() {
     container.innerHTML = `
       <h3>${randomBook.title || "Ingen titel"}</h3>
       <p><strong>Författare:</strong> ${authors.length > 0 ? authors.join(", ") : "Ingen"}</p>
-      <p><strong>Övr. titelinfo.:</strong> ${contributors.length > 0 ? contributors.join(", ") : "Ingen"}</p>
+      <p><strong>Övr. titelinfo.:</strong> ${randomBook.subtitle || "Ingen"}</p>
       <p><strong>Illustratör:</strong> ${illustrator.length > 0 ? illustrator.join(", ") : "Ingen"}</p>
       <p><strong>Översättare:</strong> ${translator.length > 0 ? translator.join(", ") : "Ingen"}</p>
       <p><strong>Utgivningsår:</strong> ${randomBook.year || "Okänt"}</p>
