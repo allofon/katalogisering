@@ -2174,7 +2174,7 @@ const books = [
 	publisherLocation: "Stockholm",
     language: "Svenska",
     pages: 32,
-    year: "2019",
+    year: "",
     productionTime: "2019",
     copyrightYear: "2019",
     series: null,
@@ -2218,8 +2218,8 @@ const books = [
 	publisherLocation: "Stockholm",
     language: "Svenska",
     pages: 363,
-    year: "2006",
-    productionTime: "2006",
+    year: null,
+    productionTime: "null",
     copyrightYear: "2006",
     series: null,
     printingInfo: "1st printing",
@@ -2476,6 +2476,7 @@ async function getRandomBook() {
       <p><strong>Utgivningsår:</strong> ${randomBook.year || "Okänt"}</p>
       <p><strong>Upplaga:</strong> ${randomBook.edition || "Okänd"}</p>
 	  <p><strong>Förläggare:</strong> ${randomBook.publisher || "Okänd"}</p>
+      <p><strong>Utgivningsort:</strong> ${randomBook.publisherLocation || "Okänd"}</p>
       <p><strong>Sidor:</strong> ${randomBook.pages || "Okänt"}</p>
       <p><strong>ISBN:</strong> ${randomBook.isbn || "Okänt"}</p>
       <p><strong>Språk:</strong> ${randomBook.language || "Okänt"}</p>
@@ -2484,7 +2485,7 @@ async function getRandomBook() {
       <p><strong>ISSN:</strong> ${randomBook.issn || "Ingen"}</p>
       <p><strong>Serie:</strong> ${randomBook.series || "Ingen"}</p>
       
-    `;
+    `;publisherLocation: "New York",
   } catch (err) {
     console.error(err);
     container.innerHTML = "Kunde inte visa bok.";
