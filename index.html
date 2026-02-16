@@ -2019,34 +2019,25 @@ const books = [
   {"title":"Törnrosa","authors":["Bröderna Grimm"],"contributors":[],"year":"1812","edition":"Första upplagan","isbn":"91-1-131415-1","librisId":"12000010"}
 ];
 		
+
 async function getRandomBook() {
     const container = document.getElementById("book");
     container.style.display = "none";
     container.innerHTML = "Laddar...";
 
-    try {
-        // Hämta den statiska JSON-filen
-        const res = await fetch("books.json");
-        const books = await res.json();
+    // Slumpa en bok
+    const book = books[Math.floor(Math.random() * books.length)];
 
-        // Slumpa en bok
-        const book = books[Math.floor(Math.random() * books.length)];
-
-        container.innerHTML = `
-            <h2>${book.title}</h2>
-            <p><strong>Författare:</strong> ${book.authors.join(", ")}</p>
-            <p><strong>Medförfattare / Illustratörer:</strong> ${book.contributors.join(", ") || "Saknas"}</p>
-            <p><strong>Utgivningsår:</strong> ${book.year}</p>
-            <p><strong>Upplaga:</strong> ${book.edition}</p>
-            <p><strong>ISBN:</strong> ${book.isbn}</p>
-            <p><strong>Libris-ID:</strong> ${book.librisId}</p>
-        `;
-        container.style.display = "block";
-
-    } catch (err) {
-        container.innerHTML = "Fel vid laddning av bokdata.";
-        console.error(err);
-    }
+    container.innerHTML = `
+        <h2>${book.title}</h2>
+        <p><strong>Författare:</strong> ${book.authors.join(", ")}</p>
+        <p><strong>Medförfattare / Illustratörer:</strong> ${book.contributors.join(", ") || "Saknas"}</p>
+        <p><strong>Utgivningsår:</strong> ${book.year}</p>
+        <p><strong>Upplaga:</strong> ${book.edition}</p>
+        <p><strong>ISBN:</strong> ${book.isbn}</p>
+        <p><strong>Libris-ID:</strong> ${book.librisId}</p>
+    `;
+    container.style.display = "block";
 }
 </script>
 
