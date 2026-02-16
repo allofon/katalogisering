@@ -1968,8 +1968,6 @@ document.addEventListener("click", () => {
 		
 
 <script>
-const books = [
-  
 // Lång lista med 50 svenska böcker (metadata korrekt)
 const books = [
   {
@@ -2223,21 +2221,6 @@ const books = [
     "copyrightYear": "1950",
     "issn": ""
   },
-  
-    {
-    "title": "Törnrosa",
-    "authors": ["Bröderna Grimm"],
-    "contributors": ["Översättare: Elsa Olenius"],
-    "year": "1812",
-    "edition": "Första svenska upplagan",
-    "isbn": "91-1-131415-1",
-    "librisId": "12000010",
-    "language": "Svenska",
-    "pages": 45,
-    "copyrightYear": "1950",
-    "issn": ""
-  },
-  
     {
     "title": "Törnrosa",
     "authors": ["Bröderna Grimm"],
@@ -2402,14 +2385,20 @@ async function getRandomBook() {
     const randomBook = books[Math.floor(Math.random() * books.length)];
 
     container.innerHTML = `
-      <h3>${randomBook.title}</h3>
-      <p><strong>Författare:</strong> ${randomBook.authors.join(", ")}</p>
-      <p><strong>Övriga:</strong> ${randomBook.contributors.join(", ")}</p>
-      <p><strong>År:</strong> ${randomBook.year}</p>
-      <p><strong>Upplaga:</strong> ${randomBook.edition}</p>
-      <p><strong>Sidor:</strong> ${randomBook.pages}</p>
-      <p><strong>ISBN:</strong> ${randomBook.isbn}</p>
-    `;
+  <h3>${randomBook.title}</h3>
+  <p><strong>Författare:</strong> ${randomBook.authors.join(", ")}</p>
+  <p><strong>Övriga:</strong> ${randomBook.contributors.length > 0 ? randomBook.contributors.join(", ") : "Ingen"}</p>
+  <p><strong>År:</strong> ${randomBook.year}</p>
+  <p><strong>Upplaga:</strong> ${randomBook.edition}</p>
+  <p><strong>Sidor:</strong> ${randomBook.pages}</p>
+  <p><strong>ISBN:</strong> ${randomBook.isbn}</p>
+  <p><strong>Libris-ID:</strong> ${randomBook.librisId}</p>
+  <p><strong>Språk:</strong> ${randomBook.language}</p>
+  <p><strong>Produktionsår:</strong> ${randomBook.productionTime}</p>
+  <p><strong>Copyright:</strong> ${randomBook.copyrightYear}</p>
+  <p><strong>ISSN:</strong> ${randomBook.issn || "Ingen"}</p>
+  <p><strong>Serie:</strong> ${randomBook.series || "Ingen"}</p>
+`;
   } catch (err) {
     console.error(err);
     container.innerHTML = "Kunde inte visa bok.";
