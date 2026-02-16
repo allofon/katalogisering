@@ -1,0 +1,2129 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+
+  <title>Mall och sånt</title>
+  
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --bg-main: #0f172a;
+  --bg-card: #1e293b;
+  --bg-subtle: #334155;
+  --border-soft: #475569;
+  --accent: #38bdf8;
+  --accent-soft: #7dd3fc;
+  --text-main: #e5e7eb;
+  --text-muted: #94a3b8;
+}
+html {
+  font-size: 17px;
+}
+    body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  margin: 0;
+  padding: 5rem 1rem 1.5rem;
+  line-height: 1.05;
+
+  display: flex;
+  flex-direction: column; /* Lägg till */
+  align-items: center;    /* centrera allt horisontellt */
+}
+
+
+    h1 {
+      font-size: 1.7rem;
+      font-weight: 650;
+      margin-bottom: 2.5rem;
+      color: #ffffff;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 1.55rem;
+      font-weight: 650;
+      margin-top: 0;
+      margin-bottom: 1.2rem;
+      color: #1e3a8a;
+      position: relative;
+      left: -1.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #1e40af;
+    }
+
+    section {
+      background: #CDF2F7;
+      border: 1px solid #E9F5F0;
+      border-left: 5px solid #E9F5F0;
+      border-radius: 8px;
+      padding: 1.4rem 3rem 1.8rem 2.4rem; /* mer luft till höger */
+      margin-bottom: 1.8rem;
+    }
+
+section:hover {
+  background-color: #D2F5FA;
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.12);
+}
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      align-items: center;
+      column-gap: 1rem;
+      margin-bottom: 0.55rem;
+    }
+
+    @media (max-width: 720px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .form-row {
+        grid-template-columns: 1fr;
+        align-items: stretch;
+      }
+    }
+
+fieldset {
+  border: 1px solid #D1E7E8;
+  border-left: 4px solid #2C3D6E;
+  border-radius: 6px;
+  padding: 0.35rem 1.4rem 0.5rem 1.2rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.8rem;
+  background-color: #C0E9F0;
+}
+
+
+    legend {
+      padding: 0 0.6rem;
+      font-weight: 700;
+      font-size: 0.7rem;
+      color: #1e3a8a;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    label {
+      margin-bottom: 0.2rem;
+
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #111827;
+      text-align: right;
+      padding-right: 0.5rem;
+      white-space: nowrap;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    input[type="text"] {
+      width: 93%;
+      max-width: 660px; /* något smalare för mer luft */ /* något kortare inputs globalt */
+      padding: 0.25rem 0.6rem;
+      border: 1px solid #9ca3af;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      background-color: #ffffff;
+    }
+
+    fieldset input[type="text"] {
+      max-width: 420px;
+      width: 80%;
+      max-width: 540px;
+      padding: 0.25rem 0.6rem;
+      border: 1px solid #9ca3af;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      background-color: #ffffff;
+    }
+
+    fieldset input[type="text"] {
+      max-width: 400px; /* kortare inputs i trädboxar */
+      width: 90%;
+      max-width: 540px;
+      padding: 0.25rem 0.6rem;
+      border: 1px solid #9ca3af;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      background-color: #ffffff;
+    }
+
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 1px #2563eb;
+    }
+
+    .agent-container .agent-block {
+      border: 1px solid #d1d5db;
+      border-left: 5px solid #2C3D6E;
+      border-radius: 8px;
+      padding: 1.2rem 2rem 1.6rem 2.4rem;
+      margin-bottom: 1.6rem;
+      background: linear-gradient(180deg, #E9F5F5 20%, #C0E9F0 80%);
+    }
+
+button {
+  background-color: var(--accent);
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  padding: 0.45rem 1rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+
+
+
+    button:hover { background-color: #2563eb; }
+    button:active { transform: translateY(1px); }
+
+    .app-container { width: 100%; max-width: 820px; }
+    
+    .section-summary {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #374151;
+  background: #f1f5f9;
+  border-left: 3px solid #93c5fd;
+  padding: 0.35rem 0.6rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+}
+
+#reviewModal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+#reviewContent {
+  background: #fff;
+  padding: 1.5rem 2rem;
+  max-width: 700px;
+  max-height: 80vh;
+  overflow-y: auto;
+  border-radius: 10px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+  font-size: 0.85rem;
+}
+
+#reviewContent h4 {
+  margin-top: 1.2rem;
+  color: #1e3a8a;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+#reviewModal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: none; /* VIKTIGT */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+#reviewModal.open {
+  display: flex;
+}
+
+#reviewContent {
+  background: #ffffff;
+  padding: 1.6rem 2rem;
+  max-width: 720px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  border-radius: 10px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+  font-size: 0.85rem;
+}
+
+#reviewContent h4 {
+  margin-top: 1.4rem;
+  margin-bottom: 0.4rem;
+  color: #1e3a8a;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+#reviewBtn {
+  background: linear-gradient(180deg, #2563eb, #1e40af);
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 0.6rem 1.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+
+
+
+#reviewSection {
+  margin-top: 2.5rem;
+  background: #f8fbff;
+  border: 1px solid #bfdbfe;
+  border-left: 6px solid #2563eb;
+  border-radius: 12px;
+  padding: 1.6rem 2.2rem 2rem 2.2rem;
+  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.15);
+}
+
+#reviewSection h2 {
+  color: #1e3a8a;
+  margin-bottom: 1.6rem;
+  text-align: center;
+}
+
+#reviewSection h3 {
+  margin-top: 1.4rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #1e40af;
+}
+
+#reviewSection div > div {
+  padding-left: 0.6rem;
+  margin-bottom: 0.25rem;
+  font-size: 1.1rem;
+}
+
+#reviewSection strong {
+  color: #111827;
+}
+
+#reviewSection {
+  background: #F0E8E6;
+  color: #0f172a; /* mörk blågrå, lättläst */
+  border: 1px dashed #F0E8E6;
+  border-radius: 8px;
+  padding: 1.4rem 2rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 1.6rem;
+}
+
+.review-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+.action-btn {
+  background-color: var(--accent);
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  padding: 0.45rem 1rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(59,130,246,0.25);
+}
+
+.action-btn.danger {
+  background-color: #dc2626;
+  box-shadow: 0 4px 10px rgba(220,38,38,0.25);
+}
+
+
+/* Bas – exakt samma stil som dina andra knappar */
+.action-btn {
+  background-color: var(--accent);
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  padding: 0.45rem 1rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(59, 130, 246, 0.25);
+}
+
+
+
+@media (max-width: 720px) {
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0.3rem;
+  }
+
+  label {
+    text-align: left;
+    padding-right: 0;
+    font-size: 0.7rem;
+  }
+
+  input[type="text"] {
+    max-width: 100%;
+    font-size: 1rem;
+    padding: 0.6rem 0.7rem;
+  }
+}
+
+@media (max-width: 720px) {
+  section {
+    padding: 1.2rem 1.2rem 1.4rem 1.2rem;
+  }
+
+  h2 {
+    left: 0;
+    text-align: left;
+  }
+}
+
+@media (max-width: 600px) {
+  .review-actions {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .action-btn {
+    width: 100%;
+    font-size: 0.95rem;
+    padding: 0.65rem 1rem;
+  }
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.25);
+}
+
+
+
+
+#resetBtn {
+  background: linear-gradient(180deg, #64748b, #475569);
+  color: #ffffff;
+}
+
+#resetBtn:hover {
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.55);
+}
+
+/* Relationer i VERK */
+section:has(> h2:contains("Verk")) fieldset {
+  background-color: #C0E9F0;
+  border-left: 4px solid var(--accent);
+}
+
+/* Relationer i UTTRYCK */
+section:has(> h2:contains("Uttryck")) fieldset {
+  background-color: #C0E9F0;
+  border-left: 4px solid var(--accent);
+}
+
+/* Relationer i SERIE */
+section:has(> h2:contains("Serie")) fieldset {
+  background-color: #C0E9F0;
+  border-left: 4px solid var(--accent);
+}
+/* Endast relationsrutor i Verk */
+section.verk fieldset.relations {
+  background: linear-gradient(180deg, #E9F5F5 20%, #C0E9F0 80%);
+  border-left: 4px solid #2C3D6E;
+}
+/* Endast relationsrutor i Uttryck */
+section.uttryck fieldset.relations {
+  background: linear-gradient(180deg, #E9F5F5 20%, #C0E9F0 80%);
+
+  border-left: 4px solid #2C3D6E;
+}
+
+/* Endast relationsrutor i Serie */
+section.serie fieldset.relations {
+  background-color: #C0E9F0;
+  border-left: 4px solid #2C3D6E;
+}
+
+/* Relationer i VERK */
+section.verk > fieldset.relations {
+  background-color: #D8EAEB;
+  border-left: 4px solid #2C3D6E;
+}
+
+/* Relationer i UTTRYCK */
+section.uttryck > fieldset.relations {
+  background-color: #D8EAEB;
+  border-left: 4px solid #2C3D6E;
+}
+
+/* Relationer i SERIE */
+section.serie > fieldset.relations {
+  background-color: #C0E9F0;
+  border-left: 4px solid #2C3D6E;
+}
+
+
+
+/* === Firefox-lik toppmeny, isolerad === */
+
+/* === TOP BAR === */
+
+.ff-topbar {
+  position: fixed;
+  top: 0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3000;
+
+  background: #020617;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.95rem;
+  color: #e5e7eb;
+}
+
+/* === MENU RESET === */
+
+.ff-menu,
+.ff-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* === TOP LEVEL MENU === */
+
+.ff-menu {
+  display: flex;
+  gap: 0.4rem;
+  padding: 0.4rem;
+}
+
+.ff-menu > li {
+  position: relative;
+  padding: 0.6rem 1.1rem;
+
+  color: inherit;
+  font-weight: 500;
+  cursor: default;
+
+  border-radius: 8px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+
+
+/* caret */
+.ff-menu > li::after {
+  content: " ▾";
+  font-size: 0.65em;
+  opacity: 0.6;
+}
+
+/* === SUBMENUS === */
+
+.ff-submenu {
+  position: absolute;
+  top: 100%;            /* INGEN GLIPA */
+  left: 0;
+
+  min-width: 220px;
+  padding: 0.35rem;
+
+  background: #020617;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+
+  display: none;
+}
+
+.ff-menu li:hover > .ff-submenu {
+  display: block;
+}
+
+/* === SUBMENU ITEMS === */
+
+.ff-submenu li {
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  white-space: nowrap;
+
+  color: #e5e7eb;
+  font-size: 0.9rem;
+
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+
+
+/* === LINKS SHOULD NOT LOOK LIKE LINKS === */
+
+.ff-submenu a,
+.ff-submenu a:visited {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+}
+
+/* === NESTED SUBMENUS (RIGHT) === */
+
+.ff-submenu.right {
+  top: 0;
+  left: 100%;
+}
+
+/* arrow for nested */
+.ff-submenu > li:has(.ff-submenu)::after {
+  content: " ▸";
+  float: right;
+  opacity: 0.6;
+}
+
+/* === ACCESSIBILITY === */
+
+.ff-menu > li:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 2px #38bdf8;
+}
+
+.ff-topbar { background: #0f172a; }
+
+.ff-submenu li { font-weight: 400; }
+
+
+.u {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.u {
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(255,255,255,0.7);
+}
+
+.awesome-message {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  margin-top: 1rem;
+  color: #38bdf8;
+  font-weight: 600;
+}
+
+.awesome-message.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.awesome-message {
+  margin-top: 0.75rem;
+  text-align: center;
+  font-weight: 500;
+  color: #cbd5f5;
+}
+
+.ff-submenu {
+  background: #C0E9F0;
+  border-radius: 6px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+  padding: 0.5rem 0;
+}
+
+.ff-submenu li {
+  padding: 0.4rem 1.2rem;
+}
+
+
+.ff-submenu > li > span,
+.ff-submenu > li:not(:has(ul)) {
+  color: #222;
+}
+
+.ff-submenu,
+.ff-submenu li {
+  color: #111;
+}
+
+.ff-submenu a {
+  color: inherit;
+}
+
+.ff-menu > li {
+  font-weight: 600;
+}
+
+.ff-submenu > li {
+  font-weight: 500;
+}
+
+.ff-submenu li li {
+  font-weight: 400;
+}
+
+.ff-menu > li {
+  letter-spacing: 0.02em;
+}
+
+
+
+.ff-submenu a:hover {
+  text-decoration-color: rgba(0,0,0,.8);
+}
+
+.u {
+  text-decoration-line: underline;
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+.ff-submenu a:hover .u {
+  color: inherit;
+}
+.ff-submenu li,
+.ff-submenu li a {
+  font-weight: 600;
+}
+
+/* Bas: all undermenytext */
+.ff-topbar .ff-submenu li,
+.ff-topbar .ff-submenu li a {
+  color: #000000;
+  font-weight: 600;
+}
+
+
+
+/* Understrukna ord ska ALLTID följa aktuell färg */
+.ff-topbar .ff-submenu .u {
+  color: inherit;
+  font-weight: inherit;
+  text-decoration-color: currentColor;
+}
+.ff-submenu a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.ff-topbar .ff-submenu a,
+.ff-topbar .ff-submenu a:visited {
+  color: #000000;
+}
+/* =========================
+   ENHETLIG MENYLOGIK
+   ========================= */
+
+/* Bas: all text i undermenyer */
+.ff-topbar .ff-submenu li {
+  color: #000;
+  font-weight: 600;
+}
+
+/* Hover: hela raden blir vit */
+.ff-topbar .ff-submenu li:hover {
+  color: #fff;
+}
+
+/* Länkar följer alltid sin rad */
+.ff-topbar .ff-submenu li a {
+  color: inherit;
+  font-weight: inherit;
+}
+
+/* Understrukna ord (Relationer) */
+.ff-topbar .ff-submenu .u {
+  color: inherit;
+  font-weight: inherit;
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+}
+
+/* Hover även för spans */
+.ff-topbar .ff-submenu li:hover .u {
+  color: inherit;
+}
+/* Hover-bakgrund för undermenyer */
+.ff-topbar .ff-submenu li:hover {
+  background-color: #020617; /* mörk bakgrund */
+}
+
+.ff-topbar .ff-submenu li {
+  padding: 0.5rem 0.75rem;
+}
+/* Grund */
+.ff-topbar .ff-submenu li {
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    transform 0.15s ease;
+}
+
+/* Hover */
+.ff-topbar .ff-submenu li:hover {
+  transform: translateX(4px);
+}
+.ff-submenu .u {
+  position: relative;
+  text-decoration: none;
+}
+
+.ff-submenu .u::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1.5px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s ease;
+}
+
+.ff-submenu li:hover .u::after {
+  transform: scaleX(1);
+}
+.ff-submenu {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+}
+.ff-submenu li:hover {
+  box-shadow: inset 3px 0 0 #38bdf8;
+}
+.ff-submenu li {
+  transition-timing-function: cubic-bezier(.4,0,.2,1);
+}
+/* Utgångsläge */
+.ff-menu > li > .ff-submenu {
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease;
+}
+
+/* När huvudmenyn hovras */
+.ff-menu > li:hover > .ff-submenu {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+
+.ff-submenu li + li {
+  border-top: 1px solid rgba(0,0,0,0.08);
+}
+.ff-submenu li {
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.ff-submenu li:hover {
+  transform: translateX(4px);
+}
+.ff-submenu li:hover {
+  text-shadow: 0 0 6px rgba(255,255,255,0.35);
+}
+.ff-submenu li:hover {
+  letter-spacing: 0.02em;
+}
+.ff-submenu li:hover {
+  background-image: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.08),
+    transparent
+  );
+}
+.ff-submenu li {
+  position: relative;
+}
+
+.ff-submenu li::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 8px;
+  height: 100%;
+  background: #00B7FF;
+  opacity: 0;
+  transition: opacity 0.30s ease;
+}
+
+.ff-submenu li:hover::before {
+  opacity: 1;
+}
+.ff-submenu li:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.35),
+    transparent 20	%
+  );
+}
+
+}
+
+/* Grund */
+.ff-menu,
+.ff-submenu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Desktop */
+@media (min-width: 769px) {
+  .ff-menu > li {
+    display: inline-block;
+    position: relative;
+  }
+
+  .ff-submenu {
+    display: none;
+    position: absolute;
+    background-color: #D8EAEB;
+  }
+
+  .ff-menu li:hover > .ff-submenu {
+    display: block;
+  }
+}
+
+/* Mobil */
+@media (max-width: 768px) {
+  .ff-menu > li {
+    display: block;
+  }
+
+  .ff-submenu {
+    position: static;
+    display: none;
+  }
+
+  .ff-menu li.open > .ff-submenu {
+    display: block;
+  }
+}
+
+.ff-menu a {
+  display: block;
+  padding: 0.6em 1em;
+}
+@media (max-width: 768px) {
+  .ff-submenu.right {
+    left: 0;
+  }
+}
+.ff-submenu li {
+  margin: 0;
+  padding: 0;
+}
+
+.ff-submenu a,
+.ff-submenu li {
+  display: block;
+  padding: 6px 12px;
+  line-height: 1.3;
+  box-sizing: border-box;
+}
+@media (max-width: 768px) {
+
+  .ff-submenu li {
+    margin: 0;
+    padding: 0;
+  }
+
+  .ff-submenu a,
+  .ff-submenu li {
+    display: block;
+    padding: 6px 12px;
+    line-height: 1.3;
+    box-sizing: border-box;
+  }
+
+}
+.ff-submenu li {
+  padding: 6px 12px;
+  line-height: 1.3;
+  box-sizing: border-box;
+}
+.ff-submenu a,
+.ff-submenu span {
+  line-height: inherit;
+}
+.ff-submenu li {
+  display: flex;
+  align-items: center;
+  padding: 6px 12px;
+  box-sizing: border-box;
+}
+.ff-submenu li > * {
+  margin: 0;
+  padding: 0;
+  line-height: 1.3;
+}
+.ff-submenu a {
+  display: inline;
+  text-decoration: none;
+  color: inherit;
+}
+.ff-submenu a {
+  color: #1a4fb3;
+  text-decoration: none;
+  border-bottom: 1px dotted rgba(26,79,179,0.4);
+}
+
+.ff-submenu a:hover,
+.ff-submenu a:focus-visible {
+  border-bottom-style: solid;
+}
+.ff-submenu a {
+  color: #1a4fb3;          /* klassisk länkblå, kan justeras */
+  text-decoration: none;
+  font-weight: 500;
+}
+.ff-submenu a {
+  text-decoration: none;
+  box-shadow: inset 0 -2px 0 0 currentColor;
+}
+.u {
+  margin-right: 0.4em;
+}
+.action-btn {
+  background: #e5f3f7;
+  color: #0f172a;
+  border: 1px solid #94d3e8;
+  border-radius: 8px;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.action-btn:hover {
+  background: #d8eef5;
+  border-color: #38bdf8;
+}
+
+.remove-btn {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fca5a5;
+}
+
+.remove-btn:hover {
+  background: #fecaca;
+}
+
+legend {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.legend-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.legend-row .action-btn {
+  margin-left: auto;
+}
+
+legend .remove-btn {
+  margin-left: auto;
+}
+
+.legend-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.legend-row .remove-btn {
+  margin-left: auto;
+}
+
+h2 {
+  font-size: 1.25rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+.agent-container .agent-block:first-child {
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.form-row label::after {
+  content: " (ID)";
+  font-weight: 400;
+  opacity: 0.6;
+}
+
+
+/* RESULTATRUTA */
+#reviewContent {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+}
+
+/* Grundstruktur */
+.rda-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Hierarkinivåer */
+.rda-level {
+  padding-left: 10px;
+}
+
+.rda-level-1 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.rda-level-2 {
+  margin-left: 20px;
+}
+
+.rda-level-3 {
+  margin-left: 40px;
+}
+
+.rda-level-4 {
+  margin-left: 60px;
+  color: #555;
+  font-size: 14px;
+}
+
+/* Entitetstyper */
+.rda-entity {
+  font-weight: 600;
+  color: #4A90E2;
+}
+
+/* Värden */
+.rda-value {
+  font-style: italic;
+  color: #222;
+}
+
+#reviewContent {
+  margin-top: 2rem;
+  padding: 2rem;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  border: 1px solid #e6e6e6;
+}
+
+.rda-summary {
+  font-family: system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+.rda-level {
+  margin-bottom: 0.8rem;
+}
+
+.rda-level-1 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.rda-level-2 {
+  margin-left: 1.2rem;
+  color: #333;
+}
+
+.rda-level-3 {
+  margin-left: 2rem;
+  color: #444;
+}
+
+.rda-level-4 {
+  margin-left: 3rem;
+  font-size: 0.95rem;
+  color: #666;
+}
+
+.rda-entity {
+  background: #f0f4ff;
+  color: #2c4fd8;
+  padding: 2px 8px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-right: 4px;
+}
+
+.rda-summary {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+
+
+  #titleCard {
+    border: 2px solid #2563eb;
+    border-radius: 12px;
+    padding: 1.5rem;
+    background: #f0f4ff;
+    max-width: 450px;
+    margin: 0 auto 2rem auto;
+  }
+
+  #titleCard p {
+    margin: 0.5rem 0;
+  }
+
+  #generateBtn {
+    padding: 0.5rem 1rem;
+    border: none;
+    background: #2563eb;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    
+  }
+
+  #generateBtn:hover {
+    background: #1e40af;
+  }
+  
+  #titleCard {
+  color: #1e3a8a; /* mörkblå text */
+}
+
+#generator {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centrera innehållet */
+  
+  button {
+    padding: 12px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    background: #0066cc;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #004999;
+}
+
+.book {
+    margin-top: 30px;
+    display: inline-block;
+    text-align: left;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    min-width: 320px;
+}
+
+  </style>
+</head>
+<body>
+<nav class="ff-topbar">
+  <ul class="ff-menu">
+  
+   <li>Titelblad etc.
+      <ul class="ff-submenu">
+        <li>Bok 1
+          <ul class="ff-submenu right">
+            <li><a href="https://svg.issuu.com/250227083225-8609e83366e368a5aa35d11f29c7cace/page_3.svg" target="_blank">Bild 1</a></li>
+            <li><a href="https://svg.issuu.com/250227083225-8609e83366e368a5aa35d11f29c7cace/page_4.svg" target="_blank">Bild 2</a></li>
+      </ul>
+      </li>
+        <li>Bok 2
+          <ul class="ff-submenu right">
+            <li><a href="https://svg.issuu.com/110309105353-5bb8cae82ee84b9c89dc9eaf91a36f97/page_2.svg" target="_blank">Bild 1</a></li>
+            <li><a href="https://svg.issuu.com/110309105353-5bb8cae82ee84b9c89dc9eaf91a36f97/page_3.svg" target="_blank">Bild 2</a></li>
+      </ul>
+      </li>
+        <li>Bok 3
+          <ul class="ff-submenu right">
+            <li><a href="https://svg.issuu.com/250220105235-3d223460fd5923d62a497165af9daa24/page_1.svg" target="_blank">Bild 1</a></li>
+            <li><a href="https://svg.issuu.com/250220105235-3d223460fd5923d62a497165af9daa24/page_2.svg" target="_blank">Bild 2</a></li>
+      </ul>
+      </li>
+        <li>Bok 4
+          <ul class="ff-submenu right">
+            <li><a href="https://svg.issuu.com/250303135426-71b4d06f88806eab4c381fe7c290a34d/page_1.svg" target="_blank">Bild 1</a></li>
+            <li><a href="https://svg.issuu.com/250303135426-71b4d06f88806eab4c381fe7c290a34d/page_2.svg" target="_blank">Bild 2</a></li>
+           </ul>
+          </li>
+        <li>Bok 5
+          <ul class="ff-submenu right">
+            <li><a href="https://issuu.com/api/content-service/public/reader/svg/963bae68386ab76860e581e89c44ee4f/3" target="_blank">Bild 1</a></li>
+            <li><a href="https://issuu.com/api/content-service/public/reader/svg/963bae68386ab76860e581e89c44ee4f/4" target="_blank">Bild 2</a></li>
+      </ul>
+      </li>
+        <li>Bok 6
+          <ul class="ff-submenu right">
+            <li><a href="https://ia600902.us.archive.org/BookReader/BookReaderImages.php?zip=/8/items/politicsofcourtl00howa/politicsofcourtl00howa_jp2.zip&file=politicsofcourtl00howa_jp2/politicsofcourtl00howa_0007.jp2&id=politicsofcourtl00howa&scale=4&rotate=0" target="_blank">Bild 1</a></li>
+            <li><a href="https://ia600902.us.archive.org/BookReader/BookReaderImages.php?zip=/8/items/politicsofcourtl00howa/politicsofcourtl00howa_jp2.zip&file=politicsofcourtl00howa_jp2/politicsofcourtl00howa_0008.jp2&id=politicsofcourtl00howa&scale=3&rotate=0" target="_blank">Bild 2</a></li>
+            <li><a href="https://ia600902.us.archive.org/BookReader/BookReaderImages.php?zip=/8/items/politicsofcourtl00howa/politicsofcourtl00howa_jp2.zip&file=politicsofcourtl00howa_jp2/politicsofcourtl00howa_0006.jp2&id=politicsofcourtl00howa&scale=3&rotate=0" target="_blank">Bild 3</a></li>
+      </ul>
+      </li>
+        <li>Bok 7
+          <ul class="ff-submenu right">
+            <li><a href="https://ia601804.us.archive.org/BookReader/BookReaderImages.php?zip=/4/items/portablequeeneli00cole_0/portablequeeneli00cole_0_jp2.zip&file=portablequeeneli00cole_0_jp2/portablequeeneli00cole_0_0007.jp2&id=portablequeeneli00cole_0&scale=4&rotate=0" target="_blank">Bild 1</a></li>
+            <li><a href="https://ia601804.us.archive.org/BookReader/BookReaderImages.php?zip=/4/items/portablequeeneli00cole_0/portablequeeneli00cole_0_jp2.zip&file=portablequeeneli00cole_0_jp2/portablequeeneli00cole_0_0008.jp2&id=portablequeeneli00cole_0&scale=3&rotate=0" target="_blank">Bild 2</a></li>
+            <li><a href="https://ia601804.us.archive.org/BookReader/BookReaderImages.php?zip=/4/items/portablequeeneli00cole_0/portablequeeneli00cole_0_jp2.zip&file=portablequeeneli00cole_0_jp2/portablequeeneli00cole_0_0006.jp2&id=portablequeeneli00cole_0&scale=3&rotate=0" target="_blank">Bild 3</a></li>
+      </ul>
+      </li>
+        <li>Bok 8
+          <ul class="ff-submenu right">
+            <li><a href="https://ia803201.us.archive.org/BookReader/BookReaderImages.php?zip=/26/items/mightyalmie00albr/mightyalmie00albr_jp2.zip&file=mightyalmie00albr_jp2/mightyalmie00albr_0007.jp2&id=mightyalmie00albr&scale=4&rotate=0" target="_blank">Bild 1</a></li>
+            <li><a href="https://ia803201.us.archive.org/BookReader/BookReaderImages.php?zip=/26/items/mightyalmie00albr/mightyalmie00albr_jp2.zip&file=mightyalmie00albr_jp2/mightyalmie00albr_0008.jp2&id=mightyalmie00albr&scale=3&rotate=0" target="_blank">Bild 2</a></li>
+      </ul>
+      </li>
+    
+        <li>Bok 9
+          <ul class="ff-submenu right">
+            <li><a href="https://ia801700.us.archive.org/BookReader/BookReaderImages.php?zip=/0/items/liarsgame00dick/liarsgame00dick_jp2.zip&file=liarsgame00dick_jp2/liarsgame00dick_0007.jp2&id=liarsgame00dick&scale=4&rotate=0" target="_blank">Bild 1</a></li>
+            <li><a href="https://ia801700.us.archive.org/BookReader/BookReaderImages.php?zip=/0/items/liarsgame00dick/liarsgame00dick_jp2.zip&file=liarsgame00dick_jp2/liarsgame00dick_0008.jp2&id=liarsgame00dick&scale=3&rotate=0" target="_blank">Bild 2</a></li>
+        </ul>
+      </li>
+
+    </ul>
+  </li>
+   
+
+<li>Relationer
+  <ul class="ff-submenu">
+
+    <li>Agent
+      <ul class="ff-submenu right">
+        <li>– <span class="u">är skapare av</span>&nbsp;VerkX</li>
+        <li>– <span class="u">är bidragsgivare till</span>&nbsp;UttryckX</li>
+      </ul>
+    </li>
+
+    <li>Manifestation
+      <ul class="ff-submenu right">
+        <li>– <span class="u">gestaltar</span>&nbsp;VerkX</li>
+        <li>– <span class="u">gestaltar</span>&nbsp;UttryckX</li>
+        <li>– <span class="u">är en del av</span>&nbsp;SerieX</li>
+      </ul>
+    </li>
+
+    <li>Serie
+      <ul class="ff-submenu right">
+        <li>– <span class="u">inkluderar</span>&nbsp;ManifestationX</li>
+      </ul>
+    </li>
+
+    <li>Uttryck
+      <ul class="ff-submenu right">
+        <li>– <span class="u">är bidraget av</span>&nbsp;AgentX</li>
+        <li>– <span class="u">förverkligar</span>&nbsp;VerkX</li>
+        <li>– <span class="u">gestaltas av</span>&nbsp;ManifestationX</li>
+      </ul>
+    </li>
+
+    <li>Verk
+      <ul class="ff-submenu right">
+        <li>– <span class="u">är skapat av</span>&nbsp;AgentX</li>
+        <li>– <span class="u">förverkligas av</span>&nbsp;UttryckX</li>
+        <li>– <span class="u">gestaltas av</span>&nbsp;ManifestationX</li>
+      </ul>
+    </li>
+
+  </ul>
+</li>
+
+        
+
+    <li>
+      Länkar
+      <ul class="ff-submenu">
+             <li>
+          <a href="https://metadatabyran.kb.se" target="_blank">MDB</a>
+        </li>
+
+        <li>
+          <a href="https://viaf.org/en" target="_blank">VIAF</a>
+        </li>
+      </ul>
+    </li>
+</nav>
+
+
+
+<h1>Slumpad bok från Libris</h1>
+<button onclick="getRandomBook()">Slumpa bok</button>
+
+<div id="book" class="book" style="display:none;"></div>
+
+
+
+
+<main class="app-container">
+
+<section>
+  <h2>Manifestation</h2>
+
+  <div class="form-row">
+    <label for="mediaType">Medietyp</label>
+    <input id="mediaType" type="text">
+  </div>
+
+  <div class="form-row">
+    <label for="carrierType">Bärartyp</label>
+    <input id="carrierType" type="text">
+  </div>
+
+  <fieldset>
+    <legend>Titel</legend>
+    <div class="form-row">
+      <label for="mainTitle">Huvudtitel</label>
+      <input id="mainTitle" type="text">
+    </div>
+    <div class="form-row">
+      <label for="otherTitle">Övrig titelinformation</label>
+      <input id="otherTitle" type="text">
+    </div>
+  </fieldset>
+
+  <div class="form-row">
+    <label for="statement">Upphovsuppgift</label>
+    <input id="statement" type="text">
+  </div>
+
+  <div class="form-row">
+    <label for="edition">Upplageuppgift</label>
+    <input id="edition" type="text">
+  </div>
+
+  <fieldset>
+    <legend>Utgivning</legend>
+    <div class="form-row">
+      <label for="place">Utgivningsort</label>
+      <input id="place" type="text">
+    </div>
+    <div class="form-row">
+      <label for="publisher">Utgivarnamn</label>
+      <input id="publisher" type="text">
+    </div>
+    <div class="form-row">
+      <label for="year">Utgivningstid</label>
+      <input id="year" type="text">
+    </div>
+  </fieldset>
+
+  <div class="form-row"><label for="manufacture">Tillverkningstid</label><input id="manufacture" type="text"></div>
+  <div class="form-row"><label for="copyright">Copyrightår</label><input id="copyright" type="text"></div>
+  <div class="form-row"><label for="seriesNumber">Numrering inom serien</label><input id="seriesNumber" type="text"></div>
+  <div class="form-row"><label for="issn">ISSN</label><input id="issn" type="text"></div>
+  <div class="form-row"><label for="manifestationId">ID för manifestation</label><input id="manifestationId" type="text"></div>
+  <div class="form-row"><label for="extent">Omfång</label><input id="extent" type="text"></div>
+
+  <fieldset>
+    <legend>Relationer</legend>
+    <div class="form-row"><label for="relWork">Till verk</label><input id="relWork" type="text"></div>
+    <div class="form-row"><label for="relExpression">Till uttryck</label><input id="relExpression" type="text"></div>
+    <div class="form-row"><label for="relSeries">Till serie</label><input id="relSeries" type="text"></div>
+  </fieldset>
+</section>
+
+<section>
+  <h2>Agent</h2>
+  <div class="agent-container">
+    <div class="agent-block" data-agent="1">
+      <h3>Agent 1</h3>
+      <div class="form-row"><label>Föredraget namn</label><input type="text"></div>
+      <div class="form-row"><label>Födelse-/dödstid</label><input type="text"></div>
+      <div class="form-row"><label>ID</label><input type="text"></div>
+      <fieldset>
+        <legend>Relationer</legend>
+        <div class="form-row"><label>Till verk</label><input type="text"></div>
+        <div class="form-row"><label>Till uttryck</label><input type="text"></div>
+      </fieldset>
+    </div>
+  </div>
+  <button type="button" id="addAgentBtn" class="action-btn"><strong>Lägg till agent</strong></button>
+</section>
+
+<section class="verk">
+  <h2>Verk</h2>
+  <div class="form-row"><label for="workTitle">Föredragen titel</label><input id="workTitle" type="text"></div>
+  <div class="form-row"><label for="audience">Målgrupp</label><input id="audience" type="text"></div>
+  <div class="form-row"><label for="workId">ID</label><input id="workId" type="text"></div>
+<fieldset><legend>Huvudskapare</legend>
+      <div class="form-row">
+        <label>RELATION TILL HUVUDSK.</label>
+        <input type="text"  />
+      </div>
+      <div class="form-row">
+        <label>HUVUDSKAPARENS ROLL</label>
+        <input type="text" />
+      </div>
+    </fieldset>
+<fieldset>
+  <legend>Medskapare</legend>
+
+  <div id="medskapareWrapper">
+    <fieldset class="medskapare-block">
+      <legend class="legend-row">
+  <span>Medskapare 1</span>
+</legend>
+
+
+      <div class="form-row">
+        <label>RELATION TILL MEDSK.</label>
+        <input type="text" />
+      </div>
+
+      <div class="form-row">
+        <label>MEDSKAPARENS ROLL</label>
+        <input type="text" />
+      </div>
+    </fieldset>
+  </div>
+
+  <button type="button" id="addMedskapareBtn" class="action-btn">
+    Lägg till medskapare
+  </button>
+</fieldset>
+
+</fieldset>
+
+    <div class="form-row"><label for="workToExpression">Till uttryck</label><input id="workToExpression" type="text"></div>
+    <div class="form-row"><label for="workToManifestation">Till manifestation</label><input id="workToManifestation" type="text"></div>
+  </fieldset>
+</section>
+
+<section class="uttryck">
+  <h2>Uttryck</h2>
+  <div class="form-row"><label for="contentType">Innehållstyp</label><input id="contentType" type="text"></div>
+  <div class="form-row"><label for="language">Språk</label><input id="language" type="text"></div>
+  <div class="form-row"><label for="expressionId">ID</label><input id="expressionId" type="text"></div>
+<fieldset class="relations">
+  <legend>Relationer</legend>
+
+  <fieldset>
+    <legend>Bidragsgivare</legend>
+    <div class="form-row">
+      <label>RELATION TILL BIDRAGSG.</label>
+      <input type="text" />
+    </div>
+    <div class="form-row">
+      <label>BIDRAGSGIVARENS ROLL</label>
+      <input type="text" />
+    </div>
+  </fieldset>
+
+  <div class="form-row">
+    <label for="exprToWork">Till verk</label>
+    <input id="exprToWork" type="text">
+  </div>
+
+  <div class="form-row">
+    <label for="exprToManifestation">Till manifestation</label>
+    <input id="exprToManifestation" type="text">
+  </div>
+</fieldset>
+
+</section>
+
+<section class="relations">
+  <h2>Serie</h2>
+  <div class="form-row"><label for="seriesTitle">Huvudtitel</label><input id="seriesTitle" type="text"></div>
+  <div class="form-row"><label for="seriesId">ID / ISSN</label><input id="seriesId" type="text"></div>
+  <fieldset>
+    <legend>Relationer</legend>
+    <div class="form-row"><label for="seriesToManifestation">Till manifestation</label><input id="seriesToManifestation" type="text"></div>
+  </fieldset>
+</section>
+
+
+
+
+
+
+
+
+
+
+	
+
+<script>
+function collectRDA() {
+  const rda = {
+    agent: {},
+    work: {},
+    expression: {},
+    manifestation: {}
+  };
+
+  document.querySelectorAll("section").forEach(section => {
+    const title = section.querySelector("h2")?.textContent.trim();
+
+    section.querySelectorAll(".form-row").forEach(row => {
+      const label = row.querySelector("label")?.textContent.trim();
+      const input = row.querySelector("input");
+      if (!input || !input.value.trim()) return;
+
+      const value = input.value.trim();
+
+      if (title === "Agent") {
+        if (label === "Föredraget namn") rda.agent.name = value;
+        if (label === "Till verk") rda.agent.toWork = value;
+      }
+
+      if (title === "Verk") {
+        if (label === "Föredragen titel") rda.work.title = value;
+        if (label === "Till uttryck") rda.work.toExpression = value;
+      }
+
+      if (title === "Uttryck") {
+        if (label === "Innehållstyp") rda.expression.contentType = value;
+        if (label === "Språk") rda.expression.language = value;
+        if (label === "Till manifestation") rda.expression.toManifestation = value;
+      }
+
+      if (title === "Manifestation") {
+        if (label === "Huvudtitel") rda.manifestation.mainTitle = value;
+      }
+    });
+  });
+
+  return rda;
+}
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+let agentCount = 1;
+const agentContainer = document.querySelector(".agent-container");
+const addAgentBtn = document.getElementById("addAgentBtn");
+
+function updateAgentNumbers() {
+  const agents = document.querySelectorAll(".agent-block");
+  agents.forEach((agent, index) => {
+    agent.dataset.agent = index + 1;
+
+    const title = agent.querySelector("h3 span");
+    if (title) {
+      title.textContent = `Agent ${index + 1}`;
+    }
+  });
+
+  agentCount = agents.length;
+}
+
+function createAgentBlock(number) {
+  const div = document.createElement("div");
+  div.className = "agent-block";
+  div.dataset.agent = number;
+
+  div.innerHTML = `
+    <h3 style="display:flex; justify-content:space-between; align-items:center;">
+      <span>Agent ${number}</span>
+      <button type="button" class="action-btn remove-btn">
+        Ta bort
+      </button>
+    </h3>
+
+    <div class="form-row"><label>Föredraget namn</label><input type="text"></div>
+    <div class="form-row"><label>Födelse-/dödstid</label><input type="text"></div>
+    <div class="form-row"><label>ID</label><input type="text"></div>
+
+    <fieldset>
+      <legend>Relationer</legend>
+      <div class="form-row"><label>Till verk</label><input type="text"></div>
+      <div class="form-row"><label>Till uttryck</label><input type="text"></div>
+    </fieldset>
+  `;
+
+div.querySelector(".remove-btn").addEventListener("click", () => {
+  div.remove();
+  updateAgentNumbers();
+});
+
+
+  return div;
+}
+
+addAgentBtn.addEventListener("click", () => {
+  agentCount++;
+  const newAgent = createAgentBlock(agentCount);
+  agentContainer.appendChild(newAgent);
+});
+
+
+function toggleMenu(button, menu) {
+  const rect = button.getBoundingClientRect();
+
+  menu.style.top = rect.bottom + "px";
+  menu.style.left = rect.left + "px";
+
+  menu.style.display =
+    menu.style.display === "block" ? "none" : "block";
+}
+
+const medskapareWrapper = document.getElementById("medskapareWrapper");
+const addMedskapareBtn = document.getElementById("addMedskapareBtn");
+
+function updateMedskapareNumbers() {
+  const blocks = medskapareWrapper.querySelectorAll(".medskapare-block");
+
+  blocks.forEach((block, index) => {
+    block.querySelector("legend span").textContent =
+      `Medskapare ${index + 1}`;
+
+    const removeBtn = block.querySelector(".remove-btn");
+    if (removeBtn) {
+      removeBtn.style.display = index === 0 ? "none" : "inline-block";
+    }
+  });
+}
+
+addMedskapareBtn.addEventListener("click", () => {
+  const template = medskapareWrapper.querySelector(".medskapare-block");
+  const clone = template.cloneNode(true);
+
+  // rensa inputs
+  clone.querySelectorAll("input").forEach(input => input.value = "");
+
+  const legend = clone.querySelector(".legend-row");
+
+  // skapa ta bort-knapp endast i kloner
+  const removeBtn = document.createElement("button");
+  removeBtn.type = "button";
+  removeBtn.className = "action-btn remove-btn";
+  removeBtn.textContent = "Ta bort";
+
+  removeBtn.addEventListener("click", () => {
+    clone.remove();
+    updateMedskapareNumbers();
+  });
+
+  legend.appendChild(removeBtn);
+  medskapareWrapper.appendChild(clone);
+
+  updateMedskapareNumbers();
+});
+
+const reviewBtn = document.getElementById("reviewBtn");
+const reviewContent = document.getElementById("reviewContent");
+
+if (reviewBtn) {
+  reviewBtn.addEventListener("click", () => {
+
+    const rda = collectRDA();
+
+    if (reviewContent) {
+      reviewContent.innerHTML = "";
+      reviewContent.appendChild(renderRDASummary(rda));
+      reviewContent.style.display = "block";
+    }
+const resetBtn = document.getElementById("resetBtn");
+
+if (resetBtn) {
+  resetBtn.addEventListener("click", () => {
+
+    // 1. Rensa alla input & textarea
+    document.querySelectorAll("input, textarea").forEach(el => {
+      el.value = "";
+    });
+
+    // 2. Dölj granskningen
+    const reviewContent = document.getElementById("reviewContent");
+    if (reviewContent) {
+      reviewContent.innerHTML = "";
+      reviewContent.style.display = "none";
+    }
+
+  });
+}    
+
+  }); // stänger addEventListener
+}     // stänger if (reviewBtn)
+
+});   // stänger DOMContentLoaded
+
+
+
+
+
+
+
+
+  
+</script>
+
+<script>
+  window.addEventListener("load", () => {
+    document.querySelectorAll("input, textarea").forEach(el => {
+      el.value = "";
+    });
+  });
+</script>
+
+
+<div class="review-actions">
+  <button id="reviewBtn" class="action-btn">
+    Granska uppgifter
+  </button>
+
+  <button id="resetBtn" class="action-btn danger">
+    Återställ alla fält
+  </button>
+</div>
+
+<!-- Allt detta ska ligga EFTER knapparna -->
+<pre id="reviewOutput" style="display:none;"></pre>
+
+<div id="reviewContent" class="rda-container" style="display:none;"></div>
+<script>
+/* ===============================
+   SÄKER RDA-RENDERING
+================================ */
+console.log("JS laddat");
+
+function renderRDASummary(rda) {
+
+  const wrapper = document.createElement("div");
+  wrapper.className = "rda-summary";
+
+  function addLevel(levelClass, builder) {
+    const div = document.createElement("div");
+    div.className = levelClass;
+    builder(div);
+    wrapper.appendChild(div);
+  }
+
+  if (rda.agent?.name) {
+    addLevel("rda-level rda-level-1", div => {
+      div.append(
+        Object.assign(document.createElement("span"), {
+          className: "rda-entity",
+          textContent: "Agent"
+        }),
+        document.createTextNode(" "),
+        Object.assign(document.createElement("span"), {
+          className: "rda-value",
+          textContent: rda.agent.name
+        })
+      );
+    });
+  }
+
+  if (rda.agent?.toWork && rda.work?.title) {
+    addLevel("rda-level rda-level-2", div => {
+      div.append(
+        document.createTextNode("↳ " + rda.agent.toWork + " "),
+        Object.assign(document.createElement("span"), {
+          className: "rda-entity",
+          textContent: "Verk"
+        }),
+        document.createTextNode(" “" + rda.work.title + "”")
+      );
+    });
+  }
+
+  if (rda.work?.toExpression &&
+      (rda.expression?.contentType || rda.expression?.language)) {
+
+    addLevel("rda-level rda-level-3", div => {
+      div.append(
+        document.createTextNode("↳ " + rda.work.toExpression + " "),
+        Object.assign(document.createElement("span"), {
+          className: "rda-entity",
+          textContent: "Uttryck"
+        })
+      );
+    });
+
+    if (rda.expression.contentType) {
+      addLevel("rda-level rda-level-4", div => {
+        div.textContent = "Innehållstyp: " + rda.expression.contentType;
+      });
+    }
+
+    if (rda.expression.language) {
+      addLevel("rda-level rda-level-4", div => {
+        div.textContent = "Språk: " + rda.expression.language;
+      });
+    }
+  }
+
+  if (rda.expression?.toManifestation &&
+      rda.manifestation?.mainTitle) {
+
+    addLevel("rda-level rda-level-3", div => {
+      div.append(
+        document.createTextNode("↳ " + rda.expression.toManifestation + " "),
+        Object.assign(document.createElement("span"), {
+          className: "rda-entity",
+          textContent: "Manifestation"
+        })
+      );
+    });
+
+    addLevel("rda-level rda-level-4", div => {
+      const strong = document.createElement("strong");
+      strong.textContent = rda.manifestation.mainTitle;
+      div.appendChild(strong);
+
+      if (rda.manifestation.otherTitle)
+        div.append(" : " + rda.manifestation.otherTitle);
+
+      if (rda.manifestation.statement)
+        div.append(" / " + rda.manifestation.statement);
+    });
+  }
+
+
+  return wrapper;
+}
+
+const reviewBtn = document.getElementById("reviewBtn");
+const reviewContent = document.getElementById("reviewContent");
+
+if (reviewBtn) {
+  reviewBtn.addEventListener("click", () => {
+    const rda = collectRDA();   // måste finnas globalt
+    reviewContent.innerHTML = "";
+    reviewContent.appendChild(renderRDASummary(rda));
+    reviewContent.style.display = "block";
+  });
+}
+
+
+
+</script>
+
+
+<script>
+/* ===============================
+   MENYER
+================================ */
+
+const openBtn = document.getElementById("openRelations");
+const level1 = document.getElementById("menu-level-1");
+const level2 = document.getElementById("menu-level-2");
+const openLinks = document.getElementById("openLinks");
+const linksMenu = document.getElementById("links-menu");
+
+if (openBtn && level1 && level2) {
+
+  const data = {
+    manifestation: ["- gestaltar VerkX", "- gestaltar UttryckX"],
+    agent: ["- är skapare av VerkX"],
+    verk: ["- förverkligas av UttryckX"],
+    uttryck: ["- förverkligar VerkX"],
+    serie: ["- inkluderar ManifestationX"]
+  };
+
+  level1.addEventListener("click", e => e.stopPropagation());
+  level2.addEventListener("click", e => e.stopPropagation());
+
+  openBtn.addEventListener("click", e => {
+    e.stopPropagation();
+
+    const rect = openBtn.getBoundingClientRect();
+    level1.style.top = rect.bottom + "px";
+    level1.style.left = rect.left + "px";
+
+    level1.style.display =
+      level1.style.display === "block" ? "none" : "block";
+
+    level2.style.display = "none";
+  });
+
+  level1.querySelectorAll("button").forEach(btn => {
+    btn.addEventListener("mouseenter", () => {
+      const key = btn.dataset.open;
+      if (!data[key]) return;
+
+      level2.innerHTML = "";
+
+      data[key].forEach(text => {
+        const b = document.createElement("button");
+        b.textContent = text;
+        level2.appendChild(b);
+      });
+
+      btn.parentElement.appendChild(level2);
+      level2.style.display = "block";
+    });
+  });
+}
+
+if (openLinks && linksMenu) {
+  linksMenu.addEventListener("click", e => e.stopPropagation());
+
+  openLinks.addEventListener("click", e => {
+    e.stopPropagation();
+    linksMenu.style.display =
+      linksMenu.style.display === "block" ? "none" : "block";
+  });
+}
+
+document.addEventListener("click", () => {
+  if (level1) level1.style.display = "none";
+  if (level2) level2.style.display = "none";
+  if (linksMenu) linksMenu.style.display = "none";
+});
+
+</script>
+
+
+<script>
+
+const searchWords = [
+    "roman","historia","barn","deckare","fantasy",
+    "biografi","vetenskap","krig","kärlek","sverige",
+    "konst","teknik","poesi","novell","drama"
+];
+
+async function getRandomBook(retry = 0) {
+
+    const container = document.getElementById("book");
+    container.style.display = "none";
+    container.innerHTML = "Laddar...";
+
+    // Slumpa sökord
+    const word = searchWords[Math.floor(Math.random() * searchWords.length)];
+
+    // Slumpa offset så vi inte alltid får första sidan
+    const randomOffset = Math.floor(Math.random() * 1000);
+
+    const url =
+        `https://libris.kb.se/find.jsonld` +
+        `?q=${encodeURIComponent(word)}` +
+        `&instanceOf.@type=Book` +
+        `&exists-title=true` +
+        `&exists-creator=true` +
+        `&_limit=50` +
+        `&_offset=${randomOffset}`;
+
+    try {
+
+        const response = await fetch(url, {
+            headers: { "Accept": "application/ld+json" }
+        });
+
+        if (!response.ok) {
+            throw new Error("HTTP-fel: " + response.status);
+        }
+
+        const data = await response.json();
+
+        if (!data["@graph"] || data["@graph"].length === 0) {
+            if (retry < 3) {
+                return getRandomBook(retry + 1);
+            } else {
+                alert("Hittade inga böcker just nu.");
+                return;
+            }
+        }
+
+        const book = data["@graph"][Math.floor(Math.random() * data["@graph"].length)];
+
+        // Försök plocka ut metadata robust
+        const title = book.title || "Okänd titel";
+
+        let author = "Okänd";
+        if (book.creator) {
+            if (Array.isArray(book.creator)) {
+                author = book.creator.map(c => c.label || c["@id"] || "").join(", ");
+            } else {
+                author = book.creator.label || book.creator["@id"] || "Okänd";
+            }
+        }
+
+        const year = book.publication?.[0]?.year || "Okänt";
+        const edition = book.edition || "Okänd";
+        const isbn = book.isbn ? book.isbn.join(", ") : "Saknas";
+        const issn = book.issn ? book.issn.join(", ") : "Saknas";
+
+        container.style.display = "block";
+        container.innerHTML = `
+            <h2>${title}</h2>
+            <p><strong>Författare:</strong> ${author}</p>
+            <p><strong>Utgivningsår:</strong> ${year}</p>
+            <p><strong>Upplaga:</strong> ${edition}</p>
+            <p><strong>ISBN:</strong> ${isbn}</p>
+            <p><strong>ISSN:</strong> ${issn}</p>
+        `;
+
+    } catch (error) {
+        console.error(error);
+        alert("Kunde inte kontakta Libris API.");
+    }
+}
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</main>
+</body>
+</html>
